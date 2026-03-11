@@ -1,8 +1,0 @@
-innofusion-server/
-├── api/
-│   ├── index.js          # মূল API
-│   ├── generate.js       # License generate
-│   ├── activate.js       # Activation
-│   └── validate.js       # Validation
-├── package.json
-└── vercel.json           # Delete this file!

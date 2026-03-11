@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iNNO FUSION</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="screen active">
+        <div class="login-container">
+            <img src="assets/logo.png" alt="iNNO FUSION" class="logo">
+            <h1>Welcome to iNNO FUSION</h1>
+            <p class="subtitle">Motion Graphics Library</p>
+            
+            <div class="login-form">
+                <input type="text" id="licenseKey" placeholder="Enter License Key (XXXX-XXXX-XXXX-XXXX)" maxlength="19">
+                <button id="activateBtn" class="btn-primary">Activate</button>
+                <p class="error-msg" id="loginError"></p>
+                <a href="https://innonex.co.uk/purchase" class="purchase-link" target="_blank">Don't have a license? Purchase Now</a>
+            </div>
+            
+            <div class="version">v1.0.0</div>
+        </div>
+    </div>
+
+    <!-- Main App Screen -->
+    <div id="mainScreen" class="screen">
+        <!-- Header -->
+        <header class="app-header">
+            <img src="assets/logo-small.png" alt="" class="header-logo">
+            <span class="header-title">iNNO FUSION</span>
+            <span class="tier-badge" id="tierBadge">PRO</span>
+            <div class="header-actions">
+                <button id="refreshBtn" class="btn-icon" title="Refresh Library">🔄</button>
+                <button id="settingsBtn" class="btn-icon" title="Settings">⚙️</button>
+                <button id="logoutBtn" class="btn-icon" title="Logout">🚪</button>
+            </div>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="🔍 Search templates...">
+            <div class="filters">
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                </select>
+                <select id="sortFilter">
+                    <option value="newest">Newest First</option>
+                    <option value="name">Name A-Z</option>
+                    <option value="popular">Most Popular</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Folder Sidebar + Content -->
+        <div class="main-layout">
+            <aside class="sidebar">
+                <h3>Folders</h3>
+                <ul id="folderList" class="folder-tree">
+                    <li class="folder-item active" data-folder="all">
+                        <span class="folder-icon">📁</span>
+                        <span>All Templates</span>
+                    </li>
+                </ul>
+            </aside>
+
+            <main class="content-area">
+                <div id="templateGrid" class="template-grid">
+                    <div class="loading-state">
+                        <img src="assets/loading.gif" alt="Loading">
+                        <p>Scanning MOGRT files...</p>
+                    </div>
+                </div>
+                
+                <div id="emptyState" class="empty-state hidden">
+                    <p>No templates found</p>
+                    <button id="scanBtn" class="btn-secondary">Scan for MOGRTs</button>
+                </div>
+            </main>
+        </div>
+
+        <!-- Template Preview Modal -->
+        <div id="previewModal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <div class="preview-container">
+                    <video id="previewVideo" loop muted></video>
+                    <div class="preview-placeholder" id="previewPlaceholder">
+                        <img src="" alt="Template Preview">
+                    </div>
+                </div>
+                <div class="template-info">
+                    <h2 id="templateName">Template Name</h2>
+                    <p id="templateCategory">Category</p>
+                    <div class="template-meta">
+                        <span id="templateDuration">00:00:00:00</span>
+                        <span id="templateSize">1920x1080</span>
+                    </div>
+                    <button id="importBtn" class="btn-primary btn-large">Import to Timeline</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../CSInterface.js"></script>
+    <script src="core/PremiereBridge.js"></script>
+    <script src="core/LicenseManager.js"></script>
+    <script src="core/MogrtScanner.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

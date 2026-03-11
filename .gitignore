@@ -1,0 +1,5 @@
+.env
+node_modules/
+*.zxp
+*.p12
+.DS_Store

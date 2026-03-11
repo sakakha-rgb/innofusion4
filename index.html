@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iNNO FUSION</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        
+        <!-- SPLASH SCREEN -->
+        <div id="splash-screen">
+            <div class="splash-content">
+                <!-- লোগো এখানে -->
+                <div class="logo-container">
+                    <img src="logoi.svg" alt="iNNO FUSION" class="logo-animated">
+                </div>
+                <h1 class="splash-title">iNNO FUSION</h1>
+                <p class="splash-subtitle">Motion Graphics Library</p>
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+                <p class="loading-text">innonex.co.uk...</p>
+            </div>
+        </div>
+
+        <!-- AUTHENTICATION PANEL -->
+        <div id="auth-panel" class="panel hidden">
+            <div class="auth-container">
+                <!-- ছোট লোগো -->
+                <div class="logo-mini">
+                    <img src="logoi.svg" alt="Logo">
+                </div>
+                
+                <h2>Welcome to iNNO FUSION</h2>
+                <p class="auth-desc">Enter your license key to activate</p>
+                
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="license-input" 
+                        placeholder="XXXX-XXXX-XXXX-XXXX" 
+                        maxlength="19"
+                        autocomplete="off"
+                    >
+                    <button id="activate-btn" class="btn-primary">
+                        <span class="btn-text">Activate</span>
+                        <span class="btn-loader hidden"></span>
+                    </button>
+                </div>
+                
+                <div id="auth-message" class="message hidden"></div>
+                
+                <div class="auth-footer">
+                    <p>Don't have a license? <a href="#" id="buy-link">Purchase Now</a></p>
+                    <p class="version">v1.0.0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN APPLICATION -->
+        <div id="main-app" class="panel hidden">
+            
+            <!-- HEADER -->
+            <header class="app-header">
+                <div class="header-left">
+                    <!-- হেডার লোগো -->
+                    <div class="logo-header">
+                        <img src="logoi.svg" alt="iN">
+                    </div>
+                    <h1>iNNO FUSION</h1>
+                </div>
+                
+                <div class="header-center">
+                    <div class="search-container">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                        <input type="text" id="global-search" placeholder="Search templates...">
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <button class="icon-btn" id="refresh-btn" title="Refresh">
+                        🔄
+                    </button>
+                    <button class="icon-btn" id="settings-btn" title="Settings">
+                        ⚙️
+                    </button>
+                    <div class="user-badge">
+                        <span id="user-tier">PRO</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- MAIN CONTENT -->
+            <div class="app-body">
+                
+                <!-- SIDEBAR -->
+                <aside class="sidebar">
+                    <div class="sidebar-section">
+                        <h3>Categories</h3>
+                        <ul class="category-list" id="category-list">
+                            <li class="category-item active" data-category="all">
+                                <span class="cat-icon">📁</span>
+                                <span>All Templates</span>
+                                <span class="count" id="count-all">0</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Favorites</h3>
+                        <ul class="favorites-list" id="favorites-list">
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- CONTENT AREA -->
+                <main class="content-area">
+                    <div class="toolbar">
+                        <div class="view-toggle">
+                            <button class="view-btn active" data-view="grid">⊞</button>
+                            <button class="view-btn" data-view="list">☰</button>
+                        </div>
+                    </div>
+
+                    <div class="grid-container" id="mogrt-grid">
+                        <!-- Templates will load here -->
+                    </div>
+
+                    <div class="empty-state hidden" id="empty-state">
+                        <div class="empty-icon">🔍</div>
+                        <h3>No templates found</h3>
+                    </div>
+                </main>
+
+                <!-- PREVIEW PANEL -->
+                <aside class="preview-panel" id="preview-panel">
+                    <div class="preview-header">
+                        <h3>Preview</h3>
+                        <button class="close-preview" id="close-preview">×</button>
+                    </div>
+                    
+                    <div class="preview-content">
+                        <div class="preview-video-container">
+                            <video id="preview-video" loop muted></video>
+                            <div class="preview-overlay">
+                                <button class="play-btn" id="play-preview">▶</button>
+                            </div>
+                        </div>
+                        
+                        <div class="template-info">
+                            <h4 id="preview-title">Select a template</h4>
+                            <p id="preview-desc">Hover to preview</p>
+                            
+                            <div class="template-meta">
+                                <div class="meta-item">
+                                    <span class="meta-label">Duration</span>
+                                    <span class="meta-value" id="preview-duration">--</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Resolution</span>
+                                    <span class="meta-value" id="preview-res">--</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="preview-actions">
+                            <button class="btn-primary btn-full" id="import-btn" disabled>
+                                Import to Timeline
+                            </button>
+                            <button class="btn-secondary btn-full" id="favorite-btn">
+                                Add to Favorites
+                            </button>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="core/LicenseManager.js"></script>
+    <script src="core/MogrtScanner.js"></script>
+    <script src="core/PremiereBridge.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
